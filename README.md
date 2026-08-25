@@ -11,7 +11,7 @@ Web one-page para **Construye y Reforma IM**, empresa de reformas y construcció
 index.html          Página principal (one-page)
 css/style.css        Estilos
 js/main.js           Menú móvil, slider antes/después, contadores, carrusel, formulario→WhatsApp, cookies
-img/                 Imágenes (favicon.svg incluido; fotos de obras pendientes de añadir)
+img/                 Imágenes (fotos generadas con IA como placeholder — ver nota abajo)
 legal/               Aviso legal, política de privacidad y política de cookies
 ```
 
@@ -19,10 +19,9 @@ HTML, CSS y JS puros. Sin frameworks ni build: se puede abrir `index.html` direc
 
 ## Pendiente antes de publicar
 
-- Sustituir todos los placeholders de foto (marcados con borde discontinuo naranja y el texto "FOTO...") por imágenes reales de obras, sobre todo los 3 pares antes/después.
+- **Fotos:** todas las imágenes actuales (`hero-reforma.jpg`, los 3 pares antes/después, `equipo-obra.jpg`, `og-reforma-terminada.jpg`) están generadas con IA como placeholder temporal, no son obras reales. Sustituirlas por fotos reales de obras de la empresa en cuanto estén disponibles, sobre todo los 3 pares antes/después (son los que más generan confianza y conversión).
 - Confirmar horario exacto, NIF/CIF, email y textos de servicios marcados como `[a confirmar]`.
 - Sustituir reseñas de ejemplo por opiniones reales.
-- Añadir imagen Open Graph real en `img/og-reforma-terminada.jpg` (1200×630px).
 - Revisar los textos legales (`legal/`) con un profesional antes de publicarlos.
 
 ## Publicar con GitHub Pages
