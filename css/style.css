@@ -205,12 +205,17 @@ section { position: relative; }
 .header-phone {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
   color: #fff;
-  font-weight: 700;
-  font-size: 15px;
+  flex-shrink: 0;
+  transition: background .25s var(--ease), transform .25s var(--ease);
 }
-.header-phone svg { width: 18px; height: 18px; color: var(--accent); }
+.header-phone:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
+.header-phone svg { width: 19px; height: 19px; color: var(--accent); }
 
 .nav-toggle {
   display: none;
