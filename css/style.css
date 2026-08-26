@@ -494,6 +494,15 @@ section { position: relative; }
 .why-item h3 { font-size: 17px; margin-bottom: 4px; }
 .why-item p { font-size: 14.5px; margin-bottom: 0; }
 
+@media (max-width: 620px) {
+  .why-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .why-item { flex-direction: column; gap: 10px; }
+  .why-icon { width: 40px; height: 40px; border-radius: 10px; }
+  .why-icon svg { width: 19px; height: 19px; }
+  .why-item h3 { font-size: 15px; margin-bottom: 4px; }
+  .why-item p { font-size: 13px; }
+}
+
 .why-visual {
   background: var(--ink);
   border-radius: var(--radius);
