@@ -93,44 +93,26 @@
     counters.forEach(function (el) { counterIO.observe(el); });
   }
 
-  /* ---------- Slider antes / despues ---------- */
+  /* ---------- Antes / despues: cambio automático ---------- */
+  var BA_INTERVAL = 3500; // ms que se muestra cada foto
+
   document.querySelectorAll(".ba-slider").forEach(function (slider) {
-    var after = slider.querySelector(".ba-after");
-    var handle = slider.querySelector(".ba-handle");
-    var dragging = false;
+    slider.style.setProperty("--ba-duration", BA_INTERVAL + "ms");
+    var showingAfter = false;
 
-    function setPosition(clientX) {
-      var rect = slider.getBoundingClientRect();
-      var x = clientX - rect.left;
-      var pct = Math.min(Math.max((x / rect.width) * 100, 0), 100);
-      after.style.clipPath = "inset(0 0 0 " + pct + "%)";
-      handle.style.left = pct + "%";
+    function tick() {
+      showingAfter = !showingAfter;
+      slider.classList.toggle("show-after", showingAfter);
+
+      // reinicia la barra de progreso
+      slider.classList.remove("animate");
+      // eslint-disable-next-line no-unused-expressions
+      slider.offsetWidth; // fuerza reflow para reiniciar la animación
+      slider.classList.add("animate");
     }
 
-    function start(e) {
-      dragging = true;
-      slider.classList.add("dragging");
-    }
-    function end() {
-      dragging = false;
-      slider.classList.remove("dragging");
-    }
-    function move(e) {
-      if (!dragging) return;
-      var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      setPosition(clientX);
-    }
-
-    slider.addEventListener("mousedown", function (e) { start(e); setPosition(e.clientX); });
-    slider.addEventListener("touchstart", function (e) { start(e); setPosition(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener("mousemove", move);
-    window.addEventListener("touchmove", move, { passive: true });
-    window.addEventListener("mouseup", end);
-    window.addEventListener("touchend", end);
-
-    slider.addEventListener("click", function (e) {
-      setPosition(e.clientX);
-    });
+    slider.classList.add("animate");
+    setInterval(tick, BA_INTERVAL);
   });
 
   /* ---------- Carrusel de opiniones ---------- */
@@ -156,8 +138,7 @@
       });
     }
 
-    var autoplay = setInterval(function () { goTo(current + 1); }, 5500);
-    track.closest(".testi-track-wrap").addEventListener("mouseenter", function () { clearInterval(autoplay); });
+    setInterval(function () { goTo(current + 1); }, 5500);
   }
 
   /* ---------- Formulario de presupuesto -> WhatsApp ---------- */

@@ -405,8 +405,6 @@ section { position: relative; }
   aspect-ratio: 4 / 3;
   border-radius: var(--radius);
   overflow: hidden;
-  cursor: ew-resize;
-  user-select: none;
   box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255,255,255,.08);
 }
@@ -414,7 +412,11 @@ section { position: relative; }
 .ba-slider .ba-before {
   position: absolute; inset: 0;
 }
-.ba-slider .ba-after { clip-path: inset(0 0 0 50%); }
+.ba-slider .ba-after {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.ba-slider.show-after .ba-after { opacity: 1; }
 .ba-slider .ba-after img,
 .ba-slider .ba-before img {
   width: 100%;
@@ -429,35 +431,35 @@ section { position: relative; }
   background: rgba(20,23,28,.72);
   color: #fff;
   z-index: 3;
+  opacity: 0;
+  transition: opacity .5s ease;
 }
-.ba-tag.before-tag { left: 14px; }
+.ba-tag.before-tag { left: 14px; opacity: 1; }
 .ba-tag.after-tag { right: 14px; background: var(--accent); }
+.ba-slider.show-after .ba-tag.before-tag { opacity: 0; }
+.ba-slider.show-after .ba-tag.after-tag { opacity: 1; }
 
-.ba-handle {
-  position: absolute; top: 0; bottom: 0; left: 50%;
-  width: 3px; background: #fff;
-  transform: translateX(-50%);
-  z-index: 4;
-  pointer-events: none;
+.ba-progress {
+  position: absolute;
+  left: 14px; right: 14px; bottom: 14px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.28);
+  z-index: 3;
+  overflow: hidden;
 }
-.ba-handle::before {
+.ba-progress::after {
   content: "";
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 42px; height: 42px;
-  border-radius: 50%;
+  position: absolute; inset: 0;
+  width: 0%;
   background: #fff;
-  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+  border-radius: 999px;
 }
-.ba-handle::after {
-  content: "◂ ▸";
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: var(--ink);
-  font-weight: 700;
+.ba-slider.animate .ba-progress::after {
+  width: 100%;
+  transition: width var(--ba-duration, 3.5s) linear;
 }
+
 .ba-caption { margin-top: 16px; text-align: center; }
 .ba-caption strong { display: block; font-family: var(--font-head); font-size: 15.5px; margin-bottom: 3px; }
 .ba-caption span { font-size: 13px; color: var(--gray-500); }
