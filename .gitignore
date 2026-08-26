@@ -3,3 +3,6 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+
+# Originales sin optimizar de las fotos generadas con IA (las versiones web están en img/)
+/originales-ia/
